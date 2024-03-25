@@ -9,5 +9,6 @@ public class ProductInfo {
 
     private String product;
     private int quantity;
+
     private BigDecimal amount;
 }

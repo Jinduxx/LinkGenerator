@@ -19,13 +19,13 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //make unique and not nullable
+    @JoinColumn(nullable = false)
     private String username;
 
-    // make not nullable
+    @JoinColumn(nullable = false)
     private String fullName;
     private String email;
-    //hash this and make not nullable
+    @JoinColumn(nullable = false)
     private String password;
     @ElementCollection(fetch = FetchType.EAGER)
     private Collection<String> roles;
