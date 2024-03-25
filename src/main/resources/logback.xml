@@ -1,0 +1,47 @@
+<configuration>
+    <contextName>spring-boot-2-logback</contextName>
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+    <jmxConfigurator/>
+    <variable name="APP_LOG_ROOT" value="/Users/decagon/linkedgenerator/applog"/>
+    <property name="DEFAULT_LOG_FORMAT"
+              value="%date{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n"/>
+    <property name="LOG_PATTERN_CONSOLE"
+              value="[%level] %d [%t] %c [%X{client-id} - %X{currentUser}] - %m%n"/>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN_CONSOLE}</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${APP_LOG_ROOT}/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${APP_LOG_ROOT}/app-full.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>10</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>100MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>${DEFAULT_LOG_FORMAT}</pattern>
+        </encoder>
+    </appender>
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${APP_LOG_ROOT}/roll/mylog.txt</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy"><!-- rollover daily -->
+            <fileNamePattern>${APP_LOG_ROOT}/roll/mylog-%d{yyyy-MM-dd}.%i.txt
+            </fileNamePattern><!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>4GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${DEFAULT_LOG_FORMAT}</pattern>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="ROLLING"/>
+    </root>
+</configuration>

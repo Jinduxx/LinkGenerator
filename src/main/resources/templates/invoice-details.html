@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Details</title>
+
+</head>
+<body>
+
+<script>
+
+    function printInvoice(){
+        window.print();
+    }
+
+    function downloadInvoice(){
+
+
+    }
+
+    function printDiv() {
+
+        var divToPrint=document.getElementById('printid');
+
+        var newWin=window.open('','Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function(){newWin.close();},10);
+
+    }
+
+
+</script>
+
+<form id="paymentForm" th:action="@{/process-payment}" method="post" th:object="${invoiceData}">
+
+<div id ="printid">
+    <h1>Invoice Details</h1>
+    <h2>ORGANIZATION NAME: <span th:text="${name}"></span></h2>
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="object : ${invoiceData.getInvoiceData()}">
+        <td th:text="${object.getProduct()}"></td>
+        <td th:text="${object.getQuantity()}"></td>
+        <td th:text="${object.getAmount()}"></td>
+    </tr>
+    </tbody>
+    <h5>TOTAL AMOUNT: <span th:text="${totalAmount}"></span></h5>
+</div>
+<div>
+    <input type="password" id="pin" th:field="*{pin}" name="pin">
+
+</div>
+
+
+<button onclick="printDiv()">print</button>
+<button type="submit" class="btn btn-primary">process payment</button>
+
+    <input type="hidden" id="2" th:field="*{name}" name="2">
+    <input type="hidden" id="3" th:field="*{uuid}" name="3">
+    <input type="hidden" id="4" th:field="*{totalAmount}" name="4">
+    <input type="hidden" id="5" th:field="*{username}" name="5">
+</form>
+
+
+</body>
+</html>

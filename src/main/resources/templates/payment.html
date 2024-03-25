@@ -1,0 +1,31 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Success</title>
+</head>
+<body>
+
+<h1>Payment Receipt</h1>
+
+<h1>Transaction Status Is <span th:text="${paymentData.getResponseMessage()}"></span></h1>
+<p>Transaction ID is <span th:text="${paymentData.getTransactionId()}"></span></p>
+
+<h2>ORGANIZATION NAME: <span th:text="${name}"></span></h2>
+<thead>
+<tr>
+  <th>Product</th>
+  <th>Quantity</th>
+  <th>Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="object : ${invoiceData}">
+  <td th:text="${object.getProduct()}"></td>
+  <td th:text="${object.getQuantity()}"></td>
+  <td th:text="${object.getAmount()}"></td>
+</tr>
+</tbody>
+<h5>TOTAL AMOUNT: <span th:text="${totalAmount}"></span></h5>
+
+</body>
+</html>
