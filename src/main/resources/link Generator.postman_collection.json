@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "5f333d4a-b48f-43f7-a046-11db117dccb6",
+		"name": "link Generator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18920395"
+	},
+	"item": [
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"accountNumber\": [\n    {\n      \"accountNumber\": \"123456789\"\n    }\n  ],\n  \"email\": \"ceejay@gmail.com\",\n  \"fullName\": \"Chijindu Adamu\",\n  \"password\": \"12345\",\n  \"pin\": \"1234\",\n  \"username\": \"ceejay\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/api/user/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"password\": \"12345\",\n  \"username\": \"ceejay\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-link",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZWVqYXkiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzExMzMxOTk1fQ.O7sfnASDeFFiqzVd-iwJGAZ7SPJWS7kCfY34SHSB-X5Uzms_m1GzyQu_RR3mFckZB68Yu-bIl9CUtpGJ4xs4ew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"productInfoList\": [\n    {\n      \"amount\": 20,\n      \"product\": \"soap\",\n      \"quantity\": 2\n    },\n{\n      \"amount\": 50,\n      \"product\": \"coal\",\n      \"quantity\": 1\n    },\n{\n      \"amount\": 100,\n      \"product\": \"food\",\n      \"quantity\": 1\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/api/invoices/create-link?name=COMO FARM",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"invoices",
+						"create-link"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "COMO FARM"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

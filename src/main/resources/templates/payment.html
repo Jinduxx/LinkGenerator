@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <title>Payment Success</title>
@@ -11,6 +11,8 @@
 <p>Transaction ID is <span th:text="${paymentData.getTransactionId()}"></span></p>
 
 <h2>ORGANIZATION NAME: <span th:text="${name}"></span></h2>
+<div>
+  <table>
 <thead>
 <tr>
   <th>Product</th>
@@ -25,6 +27,8 @@
   <td th:text="${object.getAmount()}"></td>
 </tr>
 </tbody>
+  </table>
+</div>
 <h5>TOTAL AMOUNT: <span th:text="${totalAmount}"></span></h5>
 
 </body>
